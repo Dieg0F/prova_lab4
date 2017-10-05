@@ -6,10 +6,13 @@ import java.awt.Dimension;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -50,12 +53,14 @@ public class Tela extends JFrame{
 	public void setColumns()
 	{
 		leftPanel = new JPanel();
-		leftPanel.setBackground(Color.blue);
+		leftPanel.setBackground(Color.LIGHT_GRAY);
 		leftPanel.setPreferredSize(new Dimension(150, 450));
+		leftPanel.setSize(new Dimension(150, 450));
 		panel.add(leftPanel, BorderLayout.WEST);
 		
 		rightPanel = new JPanel();
-		rightPanel.setPreferredSize(new Dimension(450, 450));
+		rightPanel.setPreferredSize(new Dimension(325, 450));
+		rightPanel.setSize(new Dimension(325, 450));
 		panel.add(rightPanel, BorderLayout.EAST);
 		
 		setLayoutPanels();
@@ -65,33 +70,12 @@ public class Tela extends JFrame{
 	{
 		GridBagLayout gridBag = new GridBagLayout();
 		
-		leftPanel.setLayout(gridBag);
+		leftPanel.setLayout(gridBag);		
 		rightPanel.setLayout(gridBag);
 	}
 	
 	public void addComponents()
 	{				
-		//Labels
-		/*JLabel lblNome = new JLabel();
-		lblNome.setText("Nome: ");
-		
-		JLabel lblEmail = new JLabel();
-		lblEmail.setText("Email: ");
-		
-		rightPanel.add(lblNome);
-		rightPanel.add(lblEmail);
-		
-		//Inputs
-		
-		JTextField txtNome = new JTextField();
-		txtNome.setPreferredSize(new Dimension(250, 25));
-		
-		JTextField txtEmail = new JTextField();
-		txtEmail.setPreferredSize(new Dimension(250, 25));
-		
-		rightPanel.add(txtNome);
-		rightPanel.add(txtEmail);
-		*/
 		
 		GridBagConstraints gbc = new GridBagConstraints();
 
@@ -110,7 +94,7 @@ public class Tela extends JFrame{
 		gbc.weightx = 1.0;
 		gbc.insets = new Insets(15, 0, 10, 15); 		
 		gbc.fill = GridBagConstraints.HORIZONTAL;
-		gbc.anchor = GridBagConstraints.CENTER;
+		gbc.anchor = GridBagConstraints.CENTER;		
 		rightPanel.add(txtName, gbc);
 
 		JLabel lblEmail = new JLabel();
@@ -153,7 +137,7 @@ public class Tela extends JFrame{
 		};
 		
 		JTable dataTable = new JTable(rowData, columnNames);
-		dataTable.setFillsViewportHeight(true);
+		dataTable.setFillsViewportHeight(false);
 		JScrollPane tableScrollPane = new JScrollPane(dataTable);
 		tableScrollPane.setMinimumSize(new Dimension(100, 100));
 		tableScrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
@@ -167,31 +151,131 @@ public class Tela extends JFrame{
 		gbc.anchor = GridBagConstraints.CENTER;
 		rightPanel.add(tableScrollPane, gbc);
 		
-		//Buttons
+		//Buttons		
+		JButton btnUm = new JButton();		
+		btnUm.setText("Botão 1");									
+		gbc.gridx = 0;
+		gbc.gridy = 0;
+		gbc.fill = GridBagConstraints.NONE;
+		gbc.anchor = GridBagConstraints.CENTER;
+		gbc.insets = new Insets(5, 5, 5, 5); 
+		leftPanel.add(btnUm, gbc);		
+		btnUm.addActionListener(new clickButton());
 		
-		JButton btnUm = new JButton();
-		JButton btnDois = new JButton();
-		JButton btnTres = new JButton();
-		JButton btnQuatro = new JButton();
-		JButton btnCinco = new JButton();
-		JButton btnSeis = new JButton();
-		JButton btnSete = new JButton();
-		JButton btnOito = new JButton();
-		JButton btnNove = new JButton();
-		JButton btnDez = new JButton();
-
-		btnUm.setText("Botão 1");
+		JButton btnDois = new JButton();		
 		btnDois.setText("Botão 2");
+		gbc.gridx = 0;
+		gbc.gridy = 1;
+		gbc.fill = GridBagConstraints.NONE;
+		gbc.anchor = GridBagConstraints.CENTER;
+		gbc.insets = new Insets(5, 5, 5, 5);
+		leftPanel.add(btnDois, gbc);
+		btnDois.addActionListener(new clickButton());
+		
+		JButton btnTres = new JButton();
 		btnTres.setText("Botão 3");
+		gbc.gridx = 0;
+		gbc.gridy = 3;
+		gbc.fill = GridBagConstraints.NONE;
+		gbc.anchor = GridBagConstraints.CENTER;
+		gbc.insets = new Insets(5, 5, 5, 5);
+		leftPanel.add(btnTres, gbc);
+		btnTres.addActionListener(new clickButton());
+		
+		JButton btnQuatro = new JButton();
 		btnQuatro.setText("Botão 4");
+		gbc.gridx = 0;
+		gbc.gridy = 4;
+		gbc.fill = GridBagConstraints.NONE;
+		gbc.anchor = GridBagConstraints.CENTER;
+		gbc.insets = new Insets(5, 5, 5, 5);
+		leftPanel.add(btnQuatro, gbc);
+		btnQuatro.addActionListener(new clickButton());
+		
+		JButton btnCinco = new JButton();
 		btnCinco.setText("Botão 5");
-		btnSeis.setText("Botão 6");
+		gbc.gridx = 0;
+		gbc.gridy = 5;
+		gbc.fill = GridBagConstraints.NONE;
+		gbc.anchor = GridBagConstraints.CENTER;
+		gbc.insets = new Insets(5, 5, 5, 5);
+		leftPanel.add(btnCinco, gbc);
+		btnCinco.addActionListener(new clickButton());
+		
+		JButton btnSeis = new JButton();
+		btnSeis.setText("Botão 6");		
+		gbc.gridx = 0;
+		gbc.gridy = 6;
+		gbc.fill = GridBagConstraints.NONE;
+		gbc.anchor = GridBagConstraints.CENTER;
+		gbc.insets = new Insets(5, 5, 5, 5);
+		leftPanel.add(btnSeis, gbc);
+		btnSeis.addActionListener(new clickButton());
+				
+		JButton btnSete = new JButton();
 		btnSete.setText("Botão 7");
+		gbc.gridx = 0;
+		gbc.gridy = 7;
+		gbc.fill = GridBagConstraints.NONE;
+		gbc.anchor = GridBagConstraints.CENTER;
+		gbc.insets = new Insets(5, 5, 5, 5);
+		leftPanel.add(btnSete, gbc);
+		btnSete.addActionListener(new clickButton());
+		
+		JButton btnOito = new JButton();		
 		btnOito.setText("Botão 8");
+		gbc.gridx = 0;
+		gbc.gridy = 8;
+		gbc.fill = GridBagConstraints.NONE;
+		gbc.anchor = GridBagConstraints.CENTER;
+		gbc.insets = new Insets(5, 5, 5, 5);
+		leftPanel.add(btnOito, gbc);
+		btnOito.addActionListener(new clickButton());
+		
+		JButton btnNove = new JButton();
 		btnNove.setText("Botão 9");
+		gbc.gridx = 0;
+		gbc.gridy = 9;
+		gbc.fill = GridBagConstraints.NONE;
+		gbc.anchor = GridBagConstraints.CENTER;
+		gbc.insets = new Insets(5, 5, 5, 5);
+		leftPanel.add(btnNove, gbc);
+		btnNove.addActionListener(new clickButton());
+			
+		JButton btnDez = new JButton();
 		btnDez.setText("Botão 10");
-		
-		
+		gbc.gridx = 0;
+		gbc.gridy = 10;
+		gbc.fill = GridBagConstraints.NONE;
+		gbc.anchor = GridBagConstraints.CENTER;
+		gbc.insets = new Insets(5, 5, 5, 5);
+		leftPanel.add(btnDez, gbc);			
+		btnDez.addActionListener(new clickButton());
+	}
+	
+	public class clickButton implements ActionListener
+	{
+		@Override
+		public void actionPerformed(ActionEvent e) {
+			JOptionPane.showMessageDialog(panel, "Eu sou responsável pelo meu futuro!");
+		}	
 	}
 	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
